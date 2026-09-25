@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Layout from './components/Layout';
 
 import Landing from './pages/Landing';
@@ -15,23 +16,25 @@ import ImpactTracker from './pages/ImpactTracker';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Landing />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="marketplace" element={<Marketplace />} />
-          <Route path="item/:id" element={<ItemDetails />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="vendor/dashboard" element={<VendorDashboard />} />
-          <Route path="ngo/dashboard" element={<NgoDashboard />} />
-          <Route path="scrap/dashboard" element={<ScrapDashboard />} />
-          <Route path="admin" element={<AdminDashboard />} />
-          <Route path="impact" element={<ImpactTracker />} />
-        </Route>
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Landing />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="marketplace" element={<Marketplace />} />
+            <Route path="item/:id" element={<ItemDetails />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="vendor/dashboard" element={<VendorDashboard />} />
+            <Route path="ngo/dashboard" element={<NgoDashboard />} />
+            <Route path="scrap/dashboard" element={<ScrapDashboard />} />
+            <Route path="admin" element={<AdminDashboard />} />
+            <Route path="impact" element={<ImpactTracker />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
